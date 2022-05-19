@@ -1,0 +1,24 @@
+<template>
+    <lightning-card
+        title="Registered students"
+        icon-name="custom:custom63">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="search"
+                onchange={handleKeyChange}
+                class="slds-var-m-bottom_small"
+                label="Search"
+                value={searchKey}
+            ></lightning-input>
+            <template if:true={students}>
+                <template for:each={students} for:item="student">
+                    <p key={student.Student__c}>{student.Student__r.Name}</p>
+                </template>
+            </template>
+            <template if:true={students.error}>
+                No data!
+                <!-- <c-error-panel errors={students.error}></c-error-panel> -->
+            </template>
+        </div>
+    </lightning-card>
+</template>
