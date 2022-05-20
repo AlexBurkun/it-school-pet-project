@@ -9,7 +9,7 @@ export default class studentsAssignment extends LightningElement {
     @api recordId;
     students = [];
 
-    @wire(getStudents, { currentCourse: '$recordId', searchKey: '$searchKey' })
+    @wire(getStudents, { currentCourseId: '$recordId', searchKey: '$searchKey' })
     wiredStudents({ error, data }) {
         if (data) {
             this.students = data;

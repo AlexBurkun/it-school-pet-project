@@ -12,7 +12,7 @@
             ></lightning-input>
             <template if:true={students}>
                 <template for:each={students} for:item="student">
-                    <p key={student.Student__c}>{student.Student__r.Name}</p>
+                    <p key={student.id}>{student.name}</p>
                 </template>
             </template>
             <template if:true={students.error}>
