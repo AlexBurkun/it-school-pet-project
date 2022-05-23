@@ -9,10 +9,11 @@
                 class="slds-var-m-bottom_small"
                 label="Search"
                 value={searchKey}
+                placeholder="Student name..."
             ></lightning-input>
             <template if:true={students}>
                 <template for:each={students} for:item="student">
-                    <p key={student.id}>{student.name}</p>
+                    <li class="slds-list_ordered" key={student.id}>{student.name}</li>
                 </template>
             </template>
             <template if:true={students.error}>
