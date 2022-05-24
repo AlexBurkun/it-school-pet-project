@@ -1,7 +1,8 @@
 <template>
     <lightning-card
         title="Registered students"
-        icon-name="custom:custom63">
+        icon-name="standard:groups"
+        >
         <div class="slds-var-m-around_medium">
             <lightning-input
                 type="search"
@@ -20,6 +21,13 @@
                 No data!
                 <!-- <c-error-panel errors={students.error}></c-error-panel> -->
             </template>
+            <hr />
+            <lightning-button onclick={openModal} variant="brand-outline" label="Registration Management" icon-name="utility:settings" class="slds-align_absolute-center"></lightning-button>
         </div>
     </lightning-card>
+    <template if:true={showModal}>
+        <c-manage-students-modal
+        onclosemodal={closeModal} 
+        ></c-manage-students-modal>
+    </template>
 </template>
