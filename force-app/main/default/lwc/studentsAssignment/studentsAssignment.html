@@ -27,6 +27,8 @@
     </lightning-card>
     <template if:true={showModal}>
         <c-manage-students-modal
+        record-id={recordId}
+        registered-students={students}
         onclosemodal={closeModal} 
         ></c-manage-students-modal>
     </template>
