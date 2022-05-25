@@ -10,4 +10,10 @@ public with sharing class DataLayer {
         ];
         return currentCourseStudents;
     }
+
+    public static List<Student__c> getAllStudents() {
+        Boolean checkStudentReadAccess = SecurityUtil.checkStudentReadAccess();
+        List<Student__c> allStudents = [SELECT Id, Name FROM Student__c];
+        return allStudents;
+    }
 }

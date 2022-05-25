@@ -9,5 +9,10 @@ public class Models {
             this.id = record.Student__c;
             this.name = record.Student__r.Name;
         }
+
+        public Student(Student__c record) {
+            this.id = record.Id;
+            this.name = record.Name;
+        }
     }
 }

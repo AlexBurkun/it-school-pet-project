@@ -7,4 +7,13 @@ public with sharing class StudentAssignmentHelper {
         }
         return models;
     }
+
+    public static List<Models.Student> getAllStudents() {
+        List<Student__c> allStudents = DataLayer.getAllStudents();
+        List<Models.Student> models = new List<Models.Student>();
+        for (Student__c createStudentsModels: allStudents) {
+            models.add(new Models.Student(createStudentsModels));
+        }
+        return models;
+    }
 }

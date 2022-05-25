@@ -16,4 +16,10 @@ public with sharing class StudentsAssignmentController {
         List<Models.Student> currentCourseStudentsModels = StudentAssignmentHelper.getStudents(currentCourseId, searchKey);
         return currentCourseStudentsModels;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Models.Student> getAllStudents() {
+        List<Models.Student> allStudents = StudentAssignmentHelper.getAllStudents();
+        return allStudents;
+    }
 }
