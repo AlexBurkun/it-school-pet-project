@@ -16,12 +16,17 @@
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <lightning-dual-listbox name="Students Assignment"
                 label="Select Students"
-                source-label="Registered students"
-                selected-label="Available students"
+                source-label="Available students"
+                selected-label="Registered students"
                 field-level-help="Add or remove students from course"
                 options={options}
                 value={values}
-                onchange={handleChange}></lightning-dual-listbox>                
+                onchange={handleChange}></lightning-dual-listbox>  
+
+                <div class="slds-box" >
+                    <p>Selected values are: {selectedStudents}</p>
+                </div>            
+
             </div>
             <!-- footer -->
             <footer class="slds-modal__footer">

@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import getAllStudents from '@salesforce/apex/StudentsAssignmentController.getAllStudents';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ManageStudentsModal extends LightningElement {
 
@@ -8,6 +9,8 @@ export default class ManageStudentsModal extends LightningElement {
     @track options = [];
     @track values = [];
     selectedStudents = [];
+    toAdd = [];
+    toDelete = [];
 
     closeModal() {
         this.dispatchEvent(new CustomEvent("closemodal"));
@@ -26,6 +29,21 @@ export default class ManageStudentsModal extends LightningElement {
 
     handleChange(event) {
         this.selectedStudents = event.detail.value;
+    }
+
+    submitDetails() {
+        if (this.selectedStudents.length === 0) {
+            const toast = new ShowToastEvent({
+                title: 'Saving error',
+                message: 'Registrations weren\'t changed',
+                variant: 'warning',
+            });
+            this.dispatchEvent(toast);
+            return
+        }
+        this.toAdd = this.selectedStudents.filter(x => !this.registeredStudents.map(item => item.id).includes(x));
+        this.toDelete = this.registeredStudents.map(item => item.id).filter(x => !this.selectedStudents.includes(x));
+        this.closeModal();
     }
     
 }
