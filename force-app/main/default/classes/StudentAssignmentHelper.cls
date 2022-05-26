@@ -16,4 +16,8 @@ public with sharing class StudentAssignmentHelper {
         }
         return models;
     }
+
+    public static void changeRegistration(Id currentCourseId, List<Id> toAdd, List<Id> toDelete) {
+        DataLayer.changeRegistration(currentCourseId, toAdd, toDelete);
+    }
 }

@@ -1,6 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
-import getAllStudents from '@salesforce/apex/StudentsAssignmentController.getAllStudents';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import getAllStudents from '@salesforce/apex/StudentsAssignmentController.getAllStudents';
+import changeRegistration from '@salesforce/apex/StudentsAssignmentController.changeRegistration';
 
 export default class ManageStudentsModal extends LightningElement {
 
@@ -38,12 +39,14 @@ export default class ManageStudentsModal extends LightningElement {
                 message: 'Registrations weren\'t changed',
                 variant: 'warning',
             });
-            this.dispatchEvent(toast);
-            return
+            return this.dispatchEvent(toast);
         }
         this.toAdd = this.selectedStudents.filter(x => !this.registeredStudents.map(item => item.id).includes(x));
         this.toDelete = this.registeredStudents.map(item => item.id).filter(x => !this.selectedStudents.includes(x));
-        this.closeModal();
+        changeRegistration ({ currentCourseId: this.recordId, toAdd: this.toAdd, toDelete: this.toDelete})
+        .then(() => {
+            this.closeModal();
+        });
     }
     
 }

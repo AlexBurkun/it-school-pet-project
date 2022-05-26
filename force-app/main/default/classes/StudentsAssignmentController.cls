@@ -22,4 +22,9 @@ public with sharing class StudentsAssignmentController {
         List<Models.Student> allStudents = StudentAssignmentHelper.getAllStudents();
         return allStudents;
     }
+
+    @AuraEnabled
+    public static void changeRegistration(Id currentCourseId, List<Id> toAdd, List<Id> toDelete) {
+        StudentAssignmentHelper.changeRegistration(currentCourseId, toAdd, toDelete);
+    }
 }
