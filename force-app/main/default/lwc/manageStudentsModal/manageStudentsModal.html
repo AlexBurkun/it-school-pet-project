@@ -19,6 +19,7 @@
                 source-label="Available students"
                 selected-label="Registered students"
                 field-level-help="Add or remove students from course"
+                disable-reordering="true"
                 options={options}
                 value={values}
                 onchange={handleChange}></lightning-dual-listbox>  
@@ -31,7 +32,7 @@
             <!-- footer -->
             <footer class="slds-modal__footer">
                 <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
-                <button class="slds-button slds-button_brand" onclick={submitDetails} title="Save">Save</button>
+                <button class="slds-button slds-button_brand" onclick={submitDetails} title="Save" disabled={disabledButton}>Save</button>
             </footer>
         </div>
     </section>
