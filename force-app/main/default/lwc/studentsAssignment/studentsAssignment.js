@@ -12,6 +12,7 @@ export default class studentsAssignment extends LightningElement {
     @api recordId;
     @track showModal = false;
     students = [];
+    showStudents;
 
     openModal() {
         this.showModal = true;
@@ -27,6 +28,7 @@ export default class studentsAssignment extends LightningElement {
         if (result.data) {
             this.students = result.data;
             this.error = undefined;
+            this.checkStudentsLength();
         } else if (result.error) {
             this.error = result.error;
             this.students = undefined;
@@ -40,7 +42,14 @@ export default class studentsAssignment extends LightningElement {
             variant: 'success',
         });
         this.dispatchEvent(toast);
-        return refreshApex(this.wiredStudentsResult);
+        refreshApex(this.wiredStudentsResult)
+        .then(() => {
+            this.checkStudentsLength();
+        });
+    }
+
+    checkStudentsLength() {
+       return this.showStudents = this.students.length > 0 ? true : false;
     }
 
     handleKeyChange(event) {

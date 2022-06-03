@@ -1,4 +1,4 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import getAllStudents from '@salesforce/apex/StudentsAssignmentController.getAllStudents';
 import changeRegistration from '@salesforce/apex/StudentsAssignmentController.changeRegistration';
 
@@ -6,8 +6,8 @@ export default class ManageStudentsModal extends LightningElement {
 
     @api recordId;
     @api registeredStudents = [];
-    @track options = [];
-    @track values = [];
+    options = [];
+    values = [];
     selectedStudents = [];
     toAdd = [];
     toDelete = [];
@@ -30,11 +30,9 @@ export default class ManageStudentsModal extends LightningElement {
 
     handleChange(event) {
         this.selectedStudents = event.detail.value;
-        if (this.selectedStudents.length >= 0) {
-            this.disabledButton = false;
-        }
+        this.disabledButton = !(this.selectedStudents.length >= 0);
     }
-
+ 
     submitDetails() {
         this.toAdd = this.selectedStudents.filter(x => !this.registeredStudents.map(item => item.id).includes(x));
         this.toDelete = this.registeredStudents.map(item => item.id).filter(x => !this.selectedStudents.includes(x));

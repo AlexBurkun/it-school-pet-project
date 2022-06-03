@@ -4,6 +4,7 @@
         icon-name="standard:groups"
         >
         <div class="slds-var-m-around_medium">
+            <template if:true={showStudents}>
             <lightning-input
                 type="search"
                 onchange={handleKeyChange}
@@ -12,6 +13,12 @@
                 value={searchKey}
                 placeholder="Student name..."
             ></lightning-input>
+            </template>
+            <template if:false={showStudents}>
+                <div class="slds-box slds-box_small slds-align_absolute-center">
+                    No registered students yet
+                  </div>
+            </template>
             <template if:true={students}>
                 <template for:each={students} for:item="student">
                     <li class="slds-list_ordered" key={student.id}>{student.name}</li>
